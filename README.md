@@ -4,13 +4,15 @@ Getting-started with [Instana](https://www.instana.com/) monitoring and tracing 
 The tutorial will show you how to quickly instrument a simple Go application for runtime monitoring and HTTP request tracing including steps for building and deploying to a Kubernetes cluster. The goal is to provide an approachable explanation and hand-on practise for non-coders to get basic understanding of the application instrumentation topic.
 
 ## Pre-requisites
-The tutorial requires that you have **Docker** or **Podman** installed on your local machine. You will also need a **Go installation** to compile and build the binary. If you prefer not to  to install Go locally, you can instead use a **Go builder container**. Makefile targets are available for both build options as well as for Podman and Docker respectively. [**Minikube**](https://minikube.sigs.k8s.io/docs/) is used as our test Kubernetes environment.
+The tutorial requires that you have Docker or Podman installed on your local machine. You will also need a **Go installation** to compile and build the binary. If you prefer not to install Go locally you can use a Go builder image instead. Makefile targets are available for both build options as well as for Podman and Docker respectively. Minikube is used as our test Kubernetes environment.
+
+
 We'll use the well-known [Istio Bookinfo application](https://istio.io/latest/docs/examples/bookinfo/) with a [custom drop-in Go version](https://github.com/styblope/details-go) of the `details` service.
 
 ## Clone the repository
 Clone this repo to your local machine.
 ```sh
-git clone https://github.com/styblope/instana-tracing-good
+git clone https://github.com/styblope/instana-tracing-go
 cd instana-tracing-go
 ```
 
@@ -50,7 +52,7 @@ Replace the image repository in `details-v1` deployment with the newly created l
 kubectl set image deploy/details-v1 details=localhost/examples-bookinfo-details-go-v1:latest
 ```
 
-Verify that the drop-in version of the `details` microservice works by opening up the Bookinfo frontpage (add `/productpage` endpoint to the end of the URL or click on the "Normal user" link)
+Verify that the drop-in version of the `details` microservice works by opening up the Bookinfo frontpage in your browser (add `/productpage` endpoint to the end of the URL or click on the "Normal user" link)
 ```
 minikube service productpage
 ```
@@ -99,7 +101,7 @@ fn main() {
 ...
     }
 ```
-The above handler wrapper will provide the basic "black-box" tracing, i.e. we'll just obtain the overall service tracing visibility as a single *span* per endpoint. This is good enough for a very simple static response like we have in our default demo service configuration. In real life however, the situation get more complex and interesting. An HTTP service usually involves a number of other dependent tasks such as database queries or external API calls that, each of which impacts the overall service performance and availability. We thus need to get a deeper insight into the inner workings of the service by adding more "white-box" instrumentation to the code. Our *details* application allows us to simulate the situation by querying an actual external API instead of a static content.
+The above handler wrapper will provide the basic "black-box" tracing, i.e. we'll just obtain the overall service tracing visibility as a single *span* per endpoint. This is good enough for a very simple static response like we have in our default demo service configuration. In real life however, the situation get more complex and interesting. An HTTP service usually involves a number of other dependent tasks such as database queries or external API calls that, each of which impacts the overall service performance and availability. We thus need to get a deeper insight into the inner workings of the service by adding more "white-box" instrumentation to the code. Our `details` application allows us to simulate the situation by querying an actual external API instead of a static content.
 
 To enable the external Google Books API query, set the `ENABLE_EXTERNAL_BOOK_SERVICE` environment variable in the `details-v1` deployment:
 ```
