@@ -38,7 +38,7 @@ cd details-go
 # if you have Go installed locally
 make build-docker
 
-# if want to build using the Go builder image
+# if want to build using the Go builder image instead
 make build-docker-with-builder
 ```
 
@@ -135,9 +135,9 @@ To build and deploy the instrumented application execute the following commands:
 cp details.go details.go.original
 cp ../details-intrumented.go details.go
 
-# if you gave Go installed locally
+# if you have Go installed locally
 make build-docker
-# if you want to use the builder image
+# or if you want to use the builder image instead
 make build-docker-with-builder
 
 # transfer image to minikube
