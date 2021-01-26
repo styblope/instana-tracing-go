@@ -4,7 +4,7 @@ Getting-started with [Instana](https://www.instana.com/) monitoring and tracing 
 The tutorial will show you how to quickly instrument a simple Go application for runtime monitoring and HTTP request tracing including steps for building and deploying to a Kubernetes cluster. The goal is to provide an approachable explanation and hand-on practise for non-coders to get basic understanding of the application instrumentation topic.
 
 ## Pre-requisites
-The tutorial requires that you have Docker or Podman installed on your local machine. You will also need a **Go installation** to compile and build the binary. If you prefer not to install Go locally you can use a Go builder image instead. Makefile targets are available for both build options as well as for Podman and Docker respectively. Minikube is used as our test Kubernetes environment.
+The tutorial requires that you have Docker or Podman installed on your local machine. You will also need a Go installation to compile and build the binary locally. If you prefer not to install Go locally you can use a Go builder image instead. Makefile targets are available for both build options as well as for Podman and Docker respectively. Minikube is used as our test Kubernetes environment.
 
 
 We'll use the well-known [Istio Bookinfo application](https://istio.io/latest/docs/examples/bookinfo/) with a [custom drop-in Go version](https://github.com/styblope/details-go) of the `details` service.
