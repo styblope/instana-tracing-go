@@ -1,0 +1,3 @@
+[submodule "details-go"]
+	path = details-go
+	url = https://github.com/styblope/details-go.git
