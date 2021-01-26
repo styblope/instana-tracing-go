@@ -78,7 +78,7 @@ This will ensure the in-app Go sensor will connect to the host agent running on 
 
 
 ## Instrument the Go application
-This section walks through the basic concepts of Go application instrumentation and highlight the key . You can refer to the [finished example](details-instrumented.go) to see the actual code changes and compare it with the [original version](./details-go/details.go).
+This section walks through the basic concepts of Go application instrumentation and highlight the key . You can refer to the [finished example](details-instrumented.go) to see the actual code changes and compare it with the [original version](https://github.com/styblope/details-go/blob/master/details.go).
 
 In order to use the Instana instrumentation, we must first import `instana/go-sensor` package at the top of our application code.
 ```go
